@@ -15,4 +15,10 @@ export class TodoService {
     findMany(){
         return this.todoRepository.find()
     }
+
+    async update(id: number, dto: CreateDto){
+        const todo = await this.todoRepository.findOne({where: {id}})
+        Object.assign( todo,dto)
+        return await this.todoRepository.save(todo)
+    }
 }
