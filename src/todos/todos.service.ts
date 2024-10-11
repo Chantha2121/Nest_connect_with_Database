@@ -21,4 +21,9 @@ export class TodoService {
         Object.assign( todo,dto)
         return await this.todoRepository.save(todo)
     }
+
+    async delete(id: number){
+        const todo = await this.todoRepository.findOne({where: {id}})
+        return await this.todoRepository.delete(todo)
+    }
 }
